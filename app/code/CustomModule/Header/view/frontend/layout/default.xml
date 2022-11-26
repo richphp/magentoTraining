@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <referenceBlock name="main.content">
+        <block name="CustomModule_Header_Index" template="CustomModule_Header::notice.phtml" />
+    </referenceBlock>
+
+    <!-- <referenceBlock name="top.links" remove="true"></referenceBlock> -->
+    <move element="breadcrumbs" destination="page.top" before="-"/>
+    <!-- <referenceBlock name="authorization-link-login" remove="true" />
+    <referenceBlock name="register-link" remove="true" />   -->
+</page>
