@@ -1,0 +1,39 @@
+{
+    "blog_category": {
+        "column": {
+            "entity_id": true,
+            "name": true,
+            "description": true,
+            "url_key": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "blog_post": {
+        "column": {
+            "entity_id": true,
+            "name": true,
+            "short_description": true,
+            "post_content": true,
+            "stores_ids": true,
+            "url_key": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "blog_post_category": {
+        "column": {
+            "entity_id": true,
+            "category_id": true,
+            "post_id": true,
+            "position": true
+        },
+        "constraint": {
+            "BLOG_POST_CATEGORY_CATEGORY_ID_BLOG_CATEGORY_ENTITY_ID": true,
+            "BLOG_POST_CATEGORY_POST_ID_BLOG_POST_ENTITY_ID": true,
+            "PRIMARY": true
+        }
+    }
+}

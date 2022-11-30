@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="blog_category" resource="default" engine="innodb" comment="Blog Category Table">
+        <column xsi:type="int" name="entity_id" padding="11" unsigned="false" nullable="false" identity="true" comment="category id"/>
+        <column xsi:type="varchar" name="name" nullable="true" length="100" comment="name"/>
+        <column xsi:type="text" name="description" nullable="true" comment="description"/>
+        <column xsi:type="varchar" name="url_key" nullable="true" length="255" comment="url key"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id"/>
+        </constraint>
+    </table>
+
+    <table name="blog_post" resource="default" engine="innodb" comment="Blog Post Table">
+        <column xsi:type="int" name="entity_id" padding="11" unsigned="false" nullable="false" identity="true" comment="post id"/>
+        <column xsi:type="varchar" name="name" nullable="true" length="100" comment="name"/>
+        <column xsi:type="text" name="short_description" nullable="true" comment="short description"/>
+        <column xsi:type="text" name="post_content" nullable="true" comment="post content"/>
+        <column xsi:type="int" name="stores_ids" nullable="true" default="1" comment="stores_ids"/>
+        <column xsi:type="varchar" name="url_key" nullable="true" length="255" comment="url key"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id"/>
+        </constraint>
+    </table>
+
+    <table name="blog_post_category" resource="default" engine="innodb" comment="Blog Post Table">
+        <column xsi:type="int" name="entity_id" padding="11" unsigned="false" nullable="false" identity="true" comment="id"/>
+        <column xsi:type="int" name="category_id" nullable="true"
+                comment="category id from blog_category table entity id"/>
+        <column xsi:type="int" name="post_id" nullable="true"
+                comment="post id from blog_post post id"/>
+        <column xsi:type="int" name="position" nullable="true"
+                comment="position of post"/>
+        <constraint xsi:type="foreign" referenceId="blog_post_category_cat_ID_blog_CAT_entity_id"
+                    table="blog_post_category" column="category_id" referenceTable="blog_category"
+                    referenceColumn="entity_id" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="blog_post_category_post_ID_blog_post_entity_id"
+                    table="blog_post_category" column="post_id" referenceTable="blog_post"
+                    referenceColumn="entity_id" onDelete="CASCADE"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id"/>
+        </constraint>
+    </table>
+</schema>
