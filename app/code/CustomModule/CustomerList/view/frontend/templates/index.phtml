@@ -1,0 +1,15 @@
+<?php
+$customerCollection = $block->getCustomerCollection();
+?>
+
+<div class="template">
+    <?php
+        if ($customerCollection && count($customerCollection) > 0) {
+            foreach ($customerCollection AS $customer) {
+                echo $customer->getFirstname()."<br/>";
+                echo $customer->getLastname()."<br/>";
+                echo $customer->getEmail()."<br/>";
+            }
+        }
+    ?>
+</div>

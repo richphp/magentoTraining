@@ -1,0 +1,120 @@
+<?xml version="1.0"?>
+
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">blog_post_grid.blog_listing_data_source</item>
+            <item name="deps" xsi:type="string">blog_post_grid.blog_listing_data_source</item>
+        </item>
+
+        <item name="spinner" xsi:type="string">blog_listing_columns</item>
+    </argument>
+
+    <settings>
+        <buttons>
+            <button name="add">
+                <url path="*/*/new" />
+                <class>primary</class>
+                <label translate="true">Add New Blog</label>
+            </button>
+        </buttons>
+    </settings>
+
+    <listingToolbar name="listing_top">
+        <bookmark name="bookmarks" />
+        <columnsControls name="columns_controls" />
+        <filterSearch name="fulltext" />
+        <filters name="listing_filters" />
+        <paging name="listing_paging" />
+        <exportButton name="export_button" />
+
+        <massaction name="listing_massaction">
+            <action name="delete">
+                <settings>
+                    <confirm>
+                        <message translate="true">Are you sure you want to delete selected items?</message>
+                        <title translate="true">Delete Posts</title>
+                    </confirm>
+                    <url path="blog/post/massDelete" />
+                    <type>delete</type>
+                    <label translate="true">Delete</label>
+                </settings>
+            </action>
+            <action name="disable">
+                <settings>
+                    <url path="blog/post/massStatus">
+                        <param name="status">0</param>
+                    </url>
+                    <type>disable</type>
+                    <label translate="true">Disable</label>
+                </settings>
+            </action>
+            <action name="enable">
+                <settings>
+                    <url path="blog/post/massStatus">
+                        <param name="status">1</param>
+                    </url>
+                    <type>enable</type>
+                    <label translate="true">Enable</label>
+                </settings>
+            </action>
+        </massaction>
+    </listingToolbar>
+
+    <dataSource name="blog_listing_data_source" component="Magento_Ui/js/grid/provider">
+        <settings>
+            <storageConfig>
+                <param name="indexField" xsi:type="string">entity_id</param>
+            </storageConfig>
+            <updateUrl path="mui/index/render" />
+        </settings>
+        <aclResource>CustomModule_BlogPost::blog_post</aclResource>
+        <dataProvider class="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider" name="blog_listing_data_source">
+            <settings>
+                <requestFieldName>id</requestFieldName>
+                <primaryFieldName>entity_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+
+    <columns name="blog_listing_columns">
+        <selectionsColumn name="ids" sortOrder="0">
+            <settings>
+                <indexField>entity_id</indexField>
+            </settings>
+        </selectionsColumn>
+        <column name="entity_id" sortOrder="10">
+            <settings>
+                <filter>textRange</filter>
+                <label translate="true">ID</label>
+            </settings>
+        </column>
+        <column name="name" sortOrder="20">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Name</label>
+                <sortable>true</sortable>
+            </settings>
+        </column>
+        <column name="created_at" sortOrder="13">
+            <settings>
+                <filter>date</filter>
+                <label translate="true">Date</label>
+                <sortable>false</sortable>
+            </settings>
+        </column>
+        <column name="enabled" component="Magento_Ui/js/grid/columns/select" sortOrder="100">
+            <settings>
+                <options class="CustomModule\BlogPost\Model\Source\Enabled" />
+                <filter>select</filter>
+                <dataType>select</dataType>
+                <label translate="true">Status</label>
+            </settings>
+        </column>
+        <actionsColumn name="actions" class="CustomModule\BlogPost\Ui\Component\Listing\Column\PostActions">
+            <settings>
+                <indexField>entity_id</indexField>
+            </settings>
+        </actionsColumn>
+    </columns>
+</listing>

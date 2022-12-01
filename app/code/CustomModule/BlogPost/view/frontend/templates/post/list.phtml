@@ -1,7 +1,10 @@
 <?php
 
 $blogs = $this->getPostList();
+
+$config = $this->getConfigurations();
 ?>
+<h1><?= $config ?></h1>
 
 <div class="template">
     <?php foreach ($blogs as $blog) : ?>

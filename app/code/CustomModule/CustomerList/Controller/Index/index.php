@@ -1,8 +1,7 @@
 <?php
+namespace CustomModule\CustomerList\Controller\Index;
 
-namespace CustomModule\BlogPost\Controller\Post;
-
-class Index extends \Magento\Framework\App\Action\Action
+class index extends \Magento\Framework\App\Action\Action
 {
     /**
      * @var \Magento\Framework\View\Result\PageFactory
@@ -13,9 +12,10 @@ class Index extends \Magento\Framework\App\Action\Action
      * @param \Magento\Framework\App\Action\Context $context
      */
     public function __construct(
-        \Magento\Framework\App\Action\Context $context,
-        \Magento\Framework\View\Result\PageFactory $pageFactory
-    ) {
+       \Magento\Framework\App\Action\Context $context,
+       \Magento\Framework\View\Result\PageFactory $pageFactory
+    )
+    {
         $this->_pageFactory = $pageFactory;
         return parent::__construct($context);
     }
@@ -27,8 +27,5 @@ class Index extends \Magento\Framework\App\Action\Action
     public function execute()
     {
         return $this->_pageFactory->create();
-        // $this->_view->loadLayout();
-        // $this->_view->getPage()->getConfig()->getTitle()->set(__('Custom Blog'));
-        // $this->_view->renderLayout();
     }
 }
