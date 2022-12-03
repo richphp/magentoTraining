@@ -1,15 +1,20 @@
-<?php
-$customerCollection = $block->getCustomerCollection();
-?>
-
 <div class="template">
-    <?php
-        if ($customerCollection && count($customerCollection) > 0) {
-            foreach ($customerCollection AS $customer) {
-                echo $customer->getFirstname()."<br/>";
-                echo $customer->getLastname()."<br/>";
-                echo $customer->getEmail()."<br/>";
-            }
-        }
-    ?>
+    <h1><?= $block->getCustomerCount() ?></h1>
+</div>
+
+<div class="customer-list">
+    <table>
+        <tr>
+            <th>Firstname</th>
+            <th>Lastname</th>
+            <th>Email</th>
+        </tr>
+        <?php foreach ($this->getCustomerList() as $product) : ?>
+            <tr>
+                <td><?= $product->getFirstName()?></td>
+                <td><?= $product->getLastName()?></td>
+                <td><?= $product->getEmail()?></td>
+            </tr>
+        <?php endforeach; ?>
+    </table>
 </div>

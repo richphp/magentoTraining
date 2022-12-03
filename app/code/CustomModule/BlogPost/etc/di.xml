@@ -13,4 +13,6 @@
             <argument name="resourceModel" xsi:type="string">\CustomModule\BlogPost\Model\ResourceModel\Post</argument>
         </arguments>
     </virtualType>
+
+    <preference for="CustomModule\BlogPost\Api\PostRepositoryInterface" type="CustomModule\BlogPost\Model\Api\PostRepository" />
 </config>
